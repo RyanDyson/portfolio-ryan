@@ -59,13 +59,6 @@ body {
     }
   }
 
-  .fancy:hover ~ .fancy,
-  .fancy:hover ~ * .fancy,
-  .fancy:has(~ .fancy:hover),
-  .fancy:has(~ * .fancy:hover) {
-    color: cadetblue !important;
-  }
-
   .fancy > .outer {
     transition: transform 350ms ease;
   }

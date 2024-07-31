@@ -6,13 +6,20 @@ import { EnhancedText } from "../text/EnhancedText";
 
 const DisplayItems = [
   { label: "PROFILE", href: "/#profile" },
-  { label: "PROJECTS", href: "/projects" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "CONTACT", href: "/projects" },
+  { label: "PROJECTS", href: "/contact" },
   { label: "BLOG", href: "/blog" },
 ];
 
 export function Home() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const enhancedTextClassName = (index: number) => {
+    return `word fancy text-center flex justify-between text-4xl sm:text-6xl md:text-7xl lg:text-8xl w-full transition ease-in-out duration-300 ${
+      hoveredIndex !== null && hoveredIndex !== index
+        ? "text-cadetblue opacity-20"
+        : "hover:text-amber-100"
+    }`;
+  };
 
   return (
     <div className=" bg-circle">
@@ -30,11 +37,7 @@ export function Home() {
             >
               <EnhancedText
                 text={item.label}
-                className={`word fancy text-center flex justify-between text-4xl sm:text-6xl md:text-7xl lg:text-8xl w-full transition ease-in-out duration-300 ${
-                  hoveredIndex !== null && hoveredIndex !== index
-                    ? "text-cadetblue opacity-20"
-                    : "hover:text-amber-100"
-                }`}
+                className={enhancedTextClassName(index)}
               />
             </Link>
           ))}
