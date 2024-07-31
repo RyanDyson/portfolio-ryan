@@ -30,4 +30,95 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .bg-circle {
+    background-image: url("../../public/circles.svg");
+    background-size: 100vw 100vh;
+    object-fit: cover;
+  }
+}
+
+@layer components {
+  @keyframes float {
+    from,
+    to {
+      transform: translateY(-0%);
+    }
+
+    50% {
+      transform: translateY(-3%);
+    }
+  }
+
+  @keyframes background-pan {
+    from {
+      background-position: 1000% center;
+    }
+
+    to {
+      background-position: 0% center;
+    }
+  }
+
+  .fancy:hover ~ .fancy,
+  .fancy:hover ~ * .fancy,
+  .fancy:has(~ .fancy:hover),
+  .fancy:has(~ * .fancy:hover) {
+    color: cadetblue !important;
+  }
+
+  .fancy > .outer {
+    transition: transform 350ms ease;
+  }
+
+  .fancy:hover > .outer {
+    transition-duration: 800ms;
+  }
+
+  .fancy:hover > .outer:nth-child(1) {
+    transform: translate(-30%, 60%) rotate(8deg);
+  }
+
+  .fancy:hover > .outer:nth-child(2) {
+    transform: translate(-40%, 20%) rotate(4deg);
+  }
+
+  .fancy:hover > .outer:nth-child(3) {
+    transform: translate(-10%, 60%) rotate(-6deg);
+  }
+
+  .fancy:hover > .outer:nth-child(4) {
+    transform: translate(30%, 8%) rotate(-8deg);
+  }
+
+  .fancy:hover > .outer:nth-child(5) {
+    transform: translate(0%, -20%) rotate(5deg);
+  }
+
+  .fancy:hover > .outer:nth-child(6) {
+    transform: translate(0%, 20%) rotate(-3deg);
+  }
+
+  .fancy:hover > .outer:nth-child(7) {
+    transform: translate(0%, -40%) rotate(-5deg);
+  }
+
+  .fancy:hover > .outer:nth-child(8) {
+    transform: translate(0%, 15%) rotate(10deg);
+  }
+
+  .fancy:hover > .outer:nth-child(9) {
+    transform: translate(0%, -50%) rotate(8deg);
+  }
+
+  .fancy:hover > .outer:nth-child(10) {
+    transform: translate(0%, 15%) rotate(-6deg);
+  }
+
+  .fancy:hover > .outer:nth-child(11) {
+    transform: translate(50%, -10%) rotate(-3deg);
+  }
+
+  .fancy:hover > .outer:nth-child(12) {
+    transform: translate(120%, -30%) rotate(-10deg);
+  }
 }

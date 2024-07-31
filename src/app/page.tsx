@@ -1,7 +1,11 @@
-import localFont from 'next/font/local'
+import { Home } from "./_components/display/Home";
+import { Profile } from "./_components/profile/Profile";
 
-const against = localFont({src: './assets/fonts/against.otf'})
-
-export default function Home() {
+export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col
+    <main className=" bg-blue-950 text-amber-50 scroll-smooth">
+      <Home />
+      <Profile />
+    </main>
+  );
+}
