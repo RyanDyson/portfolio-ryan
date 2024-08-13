@@ -47,3 +47,5 @@ export const Home = forwardRef<HTMLDivElement>((props, ref) => {
     </div>
   );
 });
+
+Home.displayName = "Home";
