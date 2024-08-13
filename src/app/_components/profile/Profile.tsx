@@ -67,7 +67,6 @@ export function Profile() {
         : "hover:text-amber-100"
     }`;
   };
-  console.log(isOpen);
 
   return (
     <div
