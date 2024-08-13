@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { navItems } from "./types/navItems";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { EnhancedText } from "./text/EnhancedText";
+import { useMediaQuery } from "react-responsive";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 type NavigationProps = {
   isHomeInView?: boolean;
@@ -11,48 +13,95 @@ type NavigationProps = {
 
 export function Navigation({ isHomeInView }: NavigationProps) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [hoveredTextIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const isMd = useMediaQuery({ query: "(min-width: 768px)" }) ?? true;
+  const controls = useAnimation();
+
   const enhancedTextClassName = (index: number) => {
-    return ` text-center flex transition ease-in-out duration-300 ${
+    return `text-center flex transition ease-in-out duration-300 ${
       hoveredTextIndex !== null && hoveredTextIndex !== index
         ? "opacity-20"
         : "hover:text-amber-100"
     }`;
   };
 
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isHovered) {
+      timer = setTimeout(() => setIsExpanded(true), 300);
+    } else {
+      setIsExpanded(false);
+    }
+    return () => clearTimeout(timer);
+  }, [isHovered]);
+
+  useEffect(() => {
+    controls.start({
+      width: isHovered ? (isMd ? "60%" : "40%") : isMd ? "4rem" : "3rem",
+      height: isHovered ? (isMd ? "3rem" : "12rem") : isMd ? "1rem" : "3rem",
+      borderRadius: isHovered ? (isMd ? "9999px" : "0.5rem") : "9999px",
+    });
+  }, [isHovered, isMd, controls]);
+
   return (
-    isHomeInView && (
-      <motion.div className="hidden md:block fixed top-0 right-0 w-screen h-20 py-4 z-50 ">
-        <div className="flex justify-center items-center">
-          <div
-            className="flex justify-around w-16 h-4 rounded-full items-center hover:h-full hover:px-8 hover:py-5 hover:gap-x-6 bg-slate-900/50 border border-slate-400/60 text-amber-50 hover:min-w-[600px] hover:w-3/5 transition duration-1000 ease-in-out z-50 backdrop-blur-lg"
-            onMouseEnter={() => {
-              setIsHovered(true);
-            }}
-            onMouseLeave={() => {
-              setIsHovered(false);
-            }}
-          >
-            {isHovered &&
-              navItems.map((item, index) => {
-                return (
-                  <Link
-                    href={item.href}
-                    key={index}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                  >
-                    <EnhancedText
-                      text={item.label}
-                      className={enhancedTextClassName(index)}
-                      isAnimated={false}
-                    />
-                  </Link>
-                );
-              })}
-          </div>
-        </div>
-      </motion.div>
-    )
+    <AnimatePresence>
+      {!isHomeInView && (
+        <motion.div
+          className="block fixed bottom-0 md:top-0 left-0 w-full md:w-screen p-4 md:h-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.div className="flex items-start md:justify-center md:items-center">
+            <motion.div
+              className="flex justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-lg overflow-hidden w-12 md:w-16 h-12 md:h-4 transition-all rounded-full z-50"
+              animate={controls}
+              transition={{ duration: 0.2, ease: "easeInOut" }}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {/* <div>
+                {isHovered === false ? (
+                  isMd === false ? (
+                    <BsThreeDotsVertical />
+                  ) : (
+                    <></>
+                  )
+                ) : (
+                  <></>
+                )}
+              </div> */}
+              {isExpanded && (
+                <motion.div
+                  className="flex flex-col md:flex-row gap-y-2 justify-around items-start md:items-center w-full px-4 md:px-8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {navItems.map((item, index) => (
+                    <Link
+                      href={item.href}
+                      key={index}
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(null)}
+                    >
+                      <EnhancedText
+                        text={item.label}
+                        className={enhancedTextClassName(index)}
+                        isAnimated={false}
+                      />
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
