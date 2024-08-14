@@ -48,7 +48,7 @@ export function Navigation({ isHomeInView }: NavigationProps) {
     <AnimatePresence>
       {!isHomeInView && (
         <motion.div
-          className="block fixed bottom-0 md:top-0 left-0 w-screen p-4 md:h-0"
+          className="block fixed bottom-0 md:top-0 left-0 w-screen p-4 md:h-0 z-50"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

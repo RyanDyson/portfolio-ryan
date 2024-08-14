@@ -2,7 +2,7 @@
 
 import { Home } from "./_components/display/Home";
 import { Profile } from "./_components/profile/Profile";
-import { Experience } from "./_components/profile/Experience";
+import { Projects } from "./_components/projects/Projects";
 import { Navigation } from "./_components/Navigation";
 import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -21,7 +21,7 @@ export default function Page() {
       <Navigation isHomeInView={!isHomeVisible} />
       <Home ref={homeRef} />
       <Profile />
-      <Experience />
+      <Projects />
     </main>
   );
 }

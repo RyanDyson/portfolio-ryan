@@ -71,7 +71,7 @@ export function Profile() {
   return (
     <div
       id="profile"
-      className="bg-blue-800 w-screen text-amber-50 p-8 md:p-16"
+      className="bg-blue-800 w-screen text-amber-50 p-8 md:px-16 py-32"
     >
       <div className="py-16 flex flex-col gap-y-4 md:flex-row justify-between">
         <div className="flex flex-col">
