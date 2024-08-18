@@ -62,6 +62,7 @@ export function Projects() {
               <div
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                key={index}
                 className="w-[600px] h-[500px] gap-x-1 relative hover:w-full transition-all duration-300 ease-in-out"
               >
                 <ProjectCard
