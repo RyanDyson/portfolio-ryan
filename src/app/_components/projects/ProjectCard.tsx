@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { type projectItems } from "./Projects";
+import { projectItems } from "../types/projectItems";
 import { CommonText } from "../text/CommonText";
 import { DisplayText } from "../text/DisplayText";
 import { motion, AnimatePresence, easeInOut } from "framer-motion";
 import { useEffect } from "react";
+import { relative } from "path";
 
 type Props = {
   item: (typeof projectItems)[number];
@@ -21,7 +22,15 @@ export const ProjectCard = ({
   console.log(index, isHovered);
 
   return (
-    <div key={index} className="flex flex-col w-full h-full">
+    <motion.div
+      key={index}
+      className="flex flex-col w-[800px] h-[300px] transition-all duration-300 ease-in-out"
+      initial={{ width: 800, height: 300, position: "relative" }}
+      whileHover={{ width: "98.75vw", height: "100%" }}
+      exit={{ width: 800, height: 300, position: "relative" }}
+      transition={{ ease: easeInOut, duration: 0.3 }}
+    >
+      <DisplayText className="text-xl">{item.title}</DisplayText>
       <Image
         src={item.imageUrl}
         alt={item.title}
@@ -31,7 +40,6 @@ export const ProjectCard = ({
         unoptimized
       />
       <div className="z-20 w-full h-full flex flex-col justify-end bg-gradient-to-b from-transparent to-zinc-950 p-4 rounded-lg">
-        <DisplayText className="text-xl">{item.title}</DisplayText>
         <AnimatePresence>
           {isHovered && (
             <motion.div
@@ -47,6 +55,6 @@ export const ProjectCard = ({
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 };
