@@ -14,24 +14,6 @@ export const projectItems = [
     github: "https://github.com/vinmeil/discard",
   },
   {
-    title: "Discard",
-    imageUrl: discard,
-    description:
-      "A chatting application with built in support for voice chat and end to end encryption. This project was a collaboration with a couple of friends. Contributed on UI design with figma aswell with landing page and back-end development",
-    stack: "Built with NextJS, TypeScript, React, and TailwindCSS",
-    demo: "https://discard-rust.vercel.app/",
-    github: "https://github.com/vinmeil/discard",
-  },
-  {
-    title: "Discard",
-    imageUrl: discard,
-    description:
-      "A chatting application with built in support for voice chat and end to end encryption. This project was a collaboration with a couple of friends. Contributed on UI design with figma aswell with landing page and back-end development",
-    stack: "Built with NextJS, TypeScript, React, and TailwindCSS",
-    demo: "https://discard-rust.vercel.app/",
-    github: "https://github.com/vinmeil/discard",
-  },
-  {
     title: "Acme",
     imageUrl: acme,
     description:
