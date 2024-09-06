@@ -20,15 +20,15 @@ export const ProjectCard = ({ item, index, isHovered }: Props) => {
   // isHovered && cardRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div ref={cardRef} className="w-max h-[500px]">
+    <div ref={cardRef} className="w-max h-[500px] overflow-y-hidden">
       <motion.div
         key={index}
         className=" flex flex-col w-[800px] transition-all duration-300 ease-in-out gap-y-8"
-        initial={{ width: 800, height: "50%", position: "relative" }}
+        initial={{ width: "50vw", height: "50%", position: "relative" }}
         animate={
           isHovered
-            ? { width: "98.75vw", height: "100%" }
-            : { width: 800, height: "50%", position: "relative" }
+            ? { width: "70vw", height: "120%" }
+            : { width: "50vw", height: "50%", position: "relative" }
         }
         transition={{ ease: easeInOut, duration: 0.3 }}
       >
