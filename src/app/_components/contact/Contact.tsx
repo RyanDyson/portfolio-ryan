@@ -64,7 +64,7 @@ export function Contact() {
   return (
     <div className="w-screen h-screen p-12 bg-polka overflow-hidden">
       <CommonText className="text-lg text-blue-950 font-bold">
-        Let's build something together
+        Lets build something together
       </CommonText>
       <div className="w-full h-max overflow-x-hidden">
         <motion.div
@@ -73,11 +73,8 @@ export function Contact() {
         >
           {title.map((item, index) => {
             return (
-              <div ref={ref}>
-                <DisplayText
-                  key={index}
-                  className="text-nowrap text-9xl text-blue-800"
-                >
+              <div key={index} ref={ref}>
+                <DisplayText className="text-nowrap text-9xl text-blue-800">
                   {item}
                 </DisplayText>
               </div>
