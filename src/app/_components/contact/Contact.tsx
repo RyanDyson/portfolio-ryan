@@ -67,6 +67,8 @@ const MemoizedTitle = React.memo(() => {
   return <ContactTitle />;
 });
 
+MemoizedTitle.displayName = "MemoizedTitle";
+
 export function Contact() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const enhancedTextClassName = (index: number) => {
