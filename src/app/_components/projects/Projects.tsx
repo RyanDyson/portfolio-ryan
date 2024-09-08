@@ -32,16 +32,13 @@ export function Projects() {
   const title = "PROJECTS";
 
   return (
-    <div ref={projectRef} className="bg-white w-screen h-[300vh]">
-      <div
-        id="projects"
-        className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20 h-screen"
-      >
+    <div id="projects" ref={projectRef} className="bg-white w-screen h-[300vh]">
+      <div className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20 h-screen">
         <div className=" text-center w-full bg-gradient-to-b from-blue-800/100 to-blue-950/100 relative h-max flex flex-col">
           <motion.div
             className="w-[400vw] flex flex-row transition-all"
-            initial={{ transform: "translate(200vw)" }}
-            animate={inView && { transform: "translate(-200vw)" }}
+            initial={{ transform: "translate(-200vw)" }}
+            animate={inView && { transform: "translate(-300vw)" }}
             transition={{ ease: transform, duration: 1 }}
           >
             {SubtitleComponent(subtitle)}

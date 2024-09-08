@@ -13,6 +13,7 @@ import { BiLogoPostgresql } from "react-icons/bi";
 import { SiTypescript } from "react-icons/si";
 import PFP from "@/../../public/ryan.jpg";
 import { CvDialog } from "./CvDialog";
+import { CustomButton } from "../CustomButton";
 
 const Name = [
   {
@@ -56,6 +57,14 @@ const stack = [
 
 const bioText =
   "Computer Science student at City University of Hong Kong. I am a Full Stack Developer and UI/UX Designer. I am passionate about creating beautiful and functional websites. I am always looking for new opportunities to learn and grow.";
+
+const DialogContent = () => {
+  return (
+    <>
+      <p>testing</p>
+    </>
+  );
+};
 
 export function Profile() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -123,13 +132,15 @@ export function Profile() {
             ))}
           </div>
           <DisplayText>Resume</DisplayText>
-          <button
+          <CustomButton
             onClick={() => setIsOpen(!isOpen)}
-            className="p-4 bg-amber-50 text-blue-950 rounded-lg text-center border hover:bg-amber-100 transition ease-in-out duration-300 active:bg-blue-950 active:text-amber-50 active:border-amber-100"
+            className="p-4 rounded-lg text-center "
           >
             <CommonText>View CV/Resume</CommonText>
-          </button>
-          {isOpen && <CvDialog isOpen={isOpen} setOpen={setIsOpen} />}
+          </CustomButton>
+          <CvDialog isOpen={isOpen} setOpen={setIsOpen}>
+            <DialogContent />
+          </CvDialog>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import { motion, easeInOut } from "framer-motion";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
+import { CustomButton } from "../CustomButton";
 
 type Props = {
   item: (typeof projectItems)[number];
@@ -60,16 +61,16 @@ export const ProjectCard = ({ item, index, isHovered }: Props) => {
           </div>
           <div className="flex flex-col md:flex-row gap-x-2 md:justify-between gap-y-2 w-max">
             <Link href={item.demo} className="w-full">
-              <button className="w-full flex gap-x-4 bg-yellow-50 text-blue-700 justify-between items-center p-2 px-4 rounded-full hover:bg-blue-600 hover:text-yellow-50 hover:border-2 hover:border-yellow-50 transition-all border-2 active:bg-blue-800">
+              <CustomButton>
                 <FaArrowUpRightFromSquare />
                 <CommonText>Demo</CommonText>
-              </button>
+              </CustomButton>
             </Link>
             <Link href={item.github} className="w-full">
-              <button className="w-full flex gap-x-4 bg-yellow-50 text-blue-700 justify-between items-center p-2 px-4 rounded-full hover:bg-blue-600 hover:text-yellow-50 hover:border-2 hover:border-yellow-50 transition-all border-2 active:bg-blue-800">
+              <CustomButton>
                 <FaGithub />
                 <CommonText>Repo</CommonText>
-              </button>
+              </CustomButton>
             </Link>
           </div>
         </motion.div>

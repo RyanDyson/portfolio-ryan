@@ -36,7 +36,7 @@ body {
     object-fit: cover;
   }
   .bg-polka {
-    background-color: #e5e5f7;
+    background-color: #ffefcf;
     opacity: 0.8;
     background-image: radial-gradient(#444cf7 0.5px, transparent 0.5px),
       radial-gradient(#444cf7 0.5px, #ffefcf 0.5px);
@@ -121,5 +121,37 @@ body {
 
   .fancy:hover > .outer:nth-child(12) {
     transform: translate(120%, -30%) rotate(-10deg);
+  }
+
+  .fancy:hover > .outer:nth-child(13) {
+    transform: translate(40%, 12%) rotate(3deg);
+  }
+
+  .fancy:hover > .outer:nth-child(14) {
+    transform: translate(-15%, -12%) rotate(-6deg);
+  }
+
+  .fancy:hover > .outer:nth-child(15) {
+    transform: translate(50%, 6%) rotate(5deg);
+  }
+
+  .fancy:hover > .outer:nth-child(16) {
+    transform: translate(10%, -10%) rotate(-8deg);
+  }
+
+  .fancy:hover > .outer:nth-child(17) {
+    transform: translate(-25%, 8%) rotate(4deg);
+  }
+
+  .fancy:hover > .outer:nth-child(18) {
+    transform: translate(35%, -3%) rotate(-2deg);
+  }
+
+  .fancy:hover > .outer:nth-child(19) {
+    transform: translate(-5%, 15%) rotate(6deg);
+  }
+
+  .fancy:hover > .outer:nth-child(20) {
+    transform: translate(45%, -8%) rotate(-5deg);
   }
 }

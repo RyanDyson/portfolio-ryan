@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { DisplayText } from "./DisplayText";
 import { CommonText } from "./CommonText";
 
@@ -12,6 +12,7 @@ interface EnhancedTextProps {
   className?: string;
   font?: fontVariant;
   isAnimated?: boolean;
+  children?: React.ReactNode;
 }
 
 export enum fontVariant {
@@ -25,37 +26,41 @@ export const EnhancedText = ({
   text,
   className,
   isAnimated,
+  children,
 }: EnhancedTextProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      id={id}
-      className={`${className} fancy`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {text.split("").map((char, index) => (
-        <span key={index} className={isAnimated ? "outer" : ""}>
-          <span
-            className={isAnimated ? "inner" : ""}
-            style={{ animationDelay: `${rand(-5000, 0)}ms` }}
-          >
-            {font === fontVariant.DELA ? (
-              <DisplayText
-                className={`letter text-center ${isHovered ? "hovered" : ""}`}
-                style={{
-                  animationDelay: `${index * 1000}ms`,
-                }}
-              >
-                {char}
-              </DisplayText>
-            ) : (
-              <CommonText>{char}</CommonText>
-            )}
+    <div className="flex justify-between w-full">
+      {children}
+      <div
+        id={id}
+        className={`${className} fancy`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {text.split("").map((char, index) => (
+          <span key={index} className={isAnimated ? "outer" : ""}>
+            <span
+              className={isAnimated ? "inner" : ""}
+              style={{ animationDelay: `${rand(-5000, 0)}ms` }}
+            >
+              {font === fontVariant.DELA ? (
+                <DisplayText
+                  className={`letter text-center ${isHovered ? "hovered" : ""}`}
+                  style={{
+                    animationDelay: `${index * 1000}ms`,
+                  }}
+                >
+                  {char}
+                </DisplayText>
+              ) : (
+                <CommonText>{char}</CommonText>
+              )}
+            </span>
           </span>
-        </span>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
