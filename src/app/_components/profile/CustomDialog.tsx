@@ -8,13 +8,13 @@ import {
 } from "framer-motion";
 import { Document } from "react-pdf";
 
-type CvDialogProps = {
+type CustomDialogProps = {
   isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   children?: React.ReactNode;
 };
 
-export function CvDialog({ isOpen, setOpen, children }: CvDialogProps) {
+export function CustomDialog({ isOpen, setOpen, children }: CustomDialogProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflowY = "hidden";
@@ -31,7 +31,7 @@ export function CvDialog({ isOpen, setOpen, children }: CvDialogProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 left-0 w-screen h-screen bg-slate-950/90 p-12 overscroll-contain z-50 pb-0"
+          className="fixed top-0 left-0 w-screen h-screen bg-slate-950/90 p-8 overscroll-contain z-50 pb-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -39,7 +39,7 @@ export function CvDialog({ isOpen, setOpen, children }: CvDialogProps) {
           // onClick={() => setOpen(!isOpen)}
         >
           <motion.div
-            className="bg-slate-900 rounded w-full h-full p-8 transition-all ease-in-out duration-300"
+            className="bg-slate-900 rounded-lg w-full h-full p-6 transition-all ease-in-out duration-300"
             initial={{ y: "100vh" }}
             animate={isOpen ? { y: 0 } : { y: "100vh" }}
             exit={{ y: "100vh" }}
@@ -48,7 +48,7 @@ export function CvDialog({ isOpen, setOpen, children }: CvDialogProps) {
             <MdCancel
               size={24}
               onClick={() => setOpen(!isOpen)}
-              className="cursor-pointer"
+              className="cursor-pointer hover:text-yellow-100 "
             />
             <div className="w-full h-full">{children}</div>
           </motion.div>

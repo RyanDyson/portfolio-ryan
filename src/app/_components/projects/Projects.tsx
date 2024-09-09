@@ -14,9 +14,27 @@ import {
 } from "framer-motion";
 import { TitleComponent } from "./TitleComponent";
 import { SubtitleComponent } from "./SubtitleComponent";
+import { CustomButton } from "../CustomButton";
+import { CustomDialog } from "../profile/CustomDialog";
+import { archiveLists } from "../types/archiveList";
+import { ArchiveListItem } from "./ArchiveListItem";
+
+const DialogContent = () => {
+  archiveLists.map((item, index) => {
+    return (
+      <div key={index}>
+        <ArchiveListItem id={index} item={item} />
+      </div>
+    );
+  });
+};
 
 export function Projects() {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndexArchive, setHoveredIndexArchive] = useState<number | null>(
+    null
+  );
   const projectRef = useRef(null);
   const headingTrigger = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -32,57 +50,90 @@ export function Projects() {
   const title = "PROJECTS";
 
   return (
-    <div id="projects" ref={projectRef} className="bg-white w-screen h-[300vh]">
-      <div className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20 h-screen">
-        <div className=" text-center w-full bg-gradient-to-b from-blue-800/100 to-blue-950/100 relative h-max flex flex-col">
-          <motion.div
-            className="w-[400vw] flex flex-row transition-all"
-            initial={{ transform: "translate(-200vw)" }}
-            animate={inView && { transform: "translate(-300vw)" }}
-            transition={{ ease: transform, duration: 1 }}
-          >
-            {SubtitleComponent(subtitle)}
-          </motion.div>
+    <>
+      <div
+        id="projects"
+        ref={projectRef}
+        className="bg-white w-screen h-[500vh] snap-normal snap-start"
+      >
+        <div className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20">
+          <div className=" text-center w-full bg-gradient-to-b from-blue-800/100 to-blue-950/100 relative h-max flex flex-col">
+            <motion.div
+              className="w-[400vw] flex flex-row transition-all"
+              initial={{ transform: "translate(-200vw)" }}
+              animate={inView && { transform: "translate(-300vw)" }}
+              transition={{ ease: transform, duration: 1 }}
+            >
+              {SubtitleComponent(subtitle)}
+            </motion.div>
 
-          <motion.div
-            className="w-[400vw] flex flex-row"
-            initial={{ transform: "translate(-400vw)" }}
-            animate={inView && { transform: "translate(0)" }}
-            transition={{ ease: transform, duration: 1 }}
-          >
-            {TitleComponent(title)}
-          </motion.div>
-          <div className="w-full h-full absolute bg-gradient-to-b from-blue-800/0 to-blue-950/100 to-95% z-20"></div>
-        </div>
+            <motion.div
+              className="w-[400vw] flex flex-row"
+              initial={{ transform: "translate(-400vw)" }}
+              animate={inView && { transform: "translate(0)" }}
+              transition={{ ease: transform, duration: 1 }}
+            >
+              {TitleComponent(title)}
+            </motion.div>
+            <div className="w-full h-full absolute bg-gradient-to-b from-blue-800/0 to-blue-950/100 to-95% z-20"></div>
+          </div>
 
-        <div
-          id="experience"
-          className="flex flex-col bg-blue-950 justify-center h-full w-[300vw]"
-          ref={headingTrigger}
-        >
-          <motion.div
-            style={{ x }}
-            className="flex gap-x-1 px-2 py-4 overflow-x-hidden"
+          <div
+            id="experience"
+            className="flex flex-col bg-blue-950 justify-center w-[300vw] h-full"
+            ref={headingTrigger}
           >
-            {projectItems.map((item, index) => {
-              return (
-                <div
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  key={index}
-                  className="gap-x-1 relative transition-all duration-300 ease-in-out "
-                >
-                  <ProjectCard
-                    index={index}
-                    item={item}
-                    isHovered={hoveredIndex === index}
-                  />
-                </div>
-              );
-            })}
-          </motion.div>
+            <motion.div
+              style={{ x }}
+              className="flex gap-x-1 px-2 py-4 overflow-x-hidden h-full"
+            >
+              {projectItems.map((item, index) => {
+                return (
+                  <div
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    key={index}
+                    className="gap-x-1 relative transition-all duration-300 ease-in-out "
+                  >
+                    <ProjectCard
+                      index={index}
+                      item={item}
+                      isHovered={hoveredIndex === index}
+                    />
+                  </div>
+                );
+              })}
+            </motion.div>
+            <div className="w-screen flex justify-end">
+              <CustomButton
+                onClick={() => setIsDialogOpen(!isDialogOpen)}
+                className="w-min m-12 text-xl"
+              >
+                <CommonText>Archive</CommonText>
+              </CustomButton>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+      <CustomDialog isOpen={isDialogOpen} setOpen={setIsDialogOpen}>
+        <div className="flex flex-col gap-y-4 p-4 divide-y divide-yellow-50">
+          {archiveLists.map((item, index) => {
+            return (
+              <div
+                key={index}
+                onMouseEnter={() => setHoveredIndexArchive(index)}
+                onMouseLeave={() => setHoveredIndexArchive(null)}
+              >
+                <ArchiveListItem
+                  id={index}
+                  item={item}
+                  isHovered={index === hoveredIndexArchive}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </CustomDialog>
+    </>
   );
 }

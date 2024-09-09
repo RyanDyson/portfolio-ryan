@@ -12,7 +12,7 @@ import { SiPrisma } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { SiTypescript } from "react-icons/si";
 import PFP from "@/../../public/ryan.jpg";
-import { CvDialog } from "./CvDialog";
+import { CustomDialog } from "./CustomDialog";
 import { CustomButton } from "../CustomButton";
 
 const Name = [
@@ -138,9 +138,9 @@ export function Profile() {
           >
             <CommonText>View CV/Resume</CommonText>
           </CustomButton>
-          <CvDialog isOpen={isOpen} setOpen={setIsOpen}>
+          <CustomDialog isOpen={isOpen} setOpen={setIsOpen}>
             <DialogContent />
-          </CvDialog>
+          </CustomDialog>
         </div>
       </div>
     </div>
