@@ -19,16 +19,6 @@ import { CustomDialog } from "../profile/CustomDialog";
 import { archiveLists } from "../types/archiveList";
 import { ArchiveListItem } from "./ArchiveListItem";
 
-const DialogContent = () => {
-  archiveLists.map((item, index) => {
-    return (
-      <div key={index}>
-        <ArchiveListItem id={index} item={item} />
-      </div>
-    );
-  });
-};
-
 export function Projects() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -48,6 +38,14 @@ export function Projects() {
 
   const subtitle = "PERSONAL";
   const title = "PROJECTS";
+
+  const archiveClassName = (index: number) => {
+    return `text-3xl transition-all duration-150 text-wrap-none pe-8 text-right ${
+      hoveredIndexArchive != null && hoveredIndexArchive !== index
+        ? "text-blue-700/20"
+        : "text-blue-200"
+    }`;
+  };
 
   return (
     <>
@@ -128,6 +126,7 @@ export function Projects() {
                   id={index}
                   item={item}
                   isHovered={index === hoveredIndexArchive}
+                  className={archiveClassName(index)}
                 />
               </div>
             );

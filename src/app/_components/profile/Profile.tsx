@@ -14,6 +14,21 @@ import { SiTypescript } from "react-icons/si";
 import PFP from "@/../../public/ryan.jpg";
 import { CustomDialog } from "./CustomDialog";
 import { CustomButton } from "../CustomButton";
+import { Document, pdfjs, Page } from "react-pdf";
+import { type PDFDocumentProxy } from "pdfjs-dist";
+import useMeasure from "react-use-measure";
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
+
+const options = {
+  cMapUrl: "/cmaps/",
+  standardFontDataUrl: "/standard_fonts/",
+};
+
+type PDFFile = string | File | null;
 
 const Name = [
   {
@@ -58,23 +73,42 @@ const stack = [
 const bioText =
   "Computer Science student at City University of Hong Kong. I am a Full Stack Developer and UI/UX Designer. I am passionate about creating beautiful and functional websites. I am always looking for new opportunities to learn and grow.";
 
-const DialogContent = () => {
-  return (
-    <>
-      <p>testing</p>
-    </>
-  );
-};
-
 export function Profile() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [ref, { width }] = useMeasure();
+
+  const [numPages, setNumPages] = useState<number>();
   const enhancedTextClassName = (index: number) => {
     return `word fancy text-center flex text-3xl md:text-4xl transition ease-in-out duration-300 ${
       hoveredIndex !== null && hoveredIndex !== index
         ? "opacity-20"
         : "hover:text-amber-100"
     }`;
+  };
+
+  function onDocumentLoadSuccess(document: PDFDocumentProxy): void {
+    const { numPages: nextNumPages } = document;
+    setNumPages(nextNumPages);
+  }
+
+  const DialogContent = () => {
+    const pdfWidth = width * (2 / 3);
+
+    return (
+      <div ref={ref} className="w-full h-full p-4 flex gap-x-4 overflow-scroll">
+        <Document file="cv.pdf" options={options} className="rounded-lg">
+          {Array.from(new Array(numPages), (_el, index) => (
+            <Page
+              key={`page_${index + 1}`}
+              pageNumber={index + 1}
+              width={pdfWidth}
+            />
+          ))}
+        </Document>
+        <div></div>
+      </div>
+    );
   };
 
   return (
