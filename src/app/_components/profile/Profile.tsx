@@ -15,13 +15,14 @@ import PFP from "@/../../public/ryan.jpg";
 import { CustomDialog } from "./CustomDialog";
 import { CustomButton } from "../CustomButton";
 import { Document, pdfjs, Page } from "react-pdf";
-import { type PDFDocumentProxy } from "pdfjs-dist";
-import useMeasure from "react-use-measure";
+// import type { PDFDocumentProxy } from "pdfjs-dist";
+// import useMeasure from "react-use-measure";
+import Link from "next/link";
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+// pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+//   "pdfjs-dist/build/pdf.worker.min.mjs",
+//   import.meta.url
+// ).toString();
 
 const options = {
   cMapUrl: "/cmaps/",
@@ -76,9 +77,9 @@ const bioText =
 export function Profile() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [ref, { width }] = useMeasure();
+  // const [ref, { width }] = useMeasure();
 
-  const [numPages, setNumPages] = useState<number>();
+  // const [numPages, setNumPages] = useState<number>();
   const enhancedTextClassName = (index: number) => {
     return `word fancy text-center flex text-3xl md:text-4xl transition ease-in-out duration-300 ${
       hoveredIndex !== null && hoveredIndex !== index
@@ -87,29 +88,29 @@ export function Profile() {
     }`;
   };
 
-  function onDocumentLoadSuccess(document: PDFDocumentProxy): void {
-    const { numPages: nextNumPages } = document;
-    setNumPages(nextNumPages);
-  }
+  // function onDocumentLoadSuccess(document: PDFDocumentProxy): void {
+  //   const { numPages: nextNumPages } = document;
+  //   setNumPages(nextNumPages);
+  // }
 
-  const DialogContent = () => {
-    const pdfWidth = width * (2 / 3);
+  // const DialogContent = () => {
+  //   const pdfWidth = width * (2 / 3);
 
-    return (
-      <div ref={ref} className="w-full h-full p-4 flex gap-x-4 overflow-scroll">
-        <Document file="cv.pdf" options={options} className="rounded-lg">
-          {Array.from(new Array(numPages), (_el, index) => (
-            <Page
-              key={`page_${index + 1}`}
-              pageNumber={index + 1}
-              width={pdfWidth}
-            />
-          ))}
-        </Document>
-        <div></div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div ref={ref} className="w-full h-full p-4 flex gap-x-4 overflow-scroll">
+  //       {/* <Document file="cv.pdf" options={options} className="rounded-lg">
+  //         {Array.from(new Array(numPages), (_el, index) => (
+  //           <Page
+  //             key={`page_${index + 1}`}
+  //             pageNumber={index + 1}
+  //             width={pdfWidth}
+  //           />
+  //         ))}
+  //       </Document>
+  //       <div></div> */}
+  //     </div>
+  //   );
+  // };
 
   return (
     <div
@@ -166,15 +167,17 @@ export function Profile() {
             ))}
           </div>
           <DisplayText>Resume</DisplayText>
-          <CustomButton
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-4 rounded-lg text-center "
-          >
-            <CommonText>View CV/Resume</CommonText>
-          </CustomButton>
-          <CustomDialog isOpen={isOpen} setOpen={setIsOpen}>
+          <Link href="https://drive.google.com/drive/folders/1oiJrh3D08he5XuYw2damI9MKsreA_vFW?usp=sharing">
+            <CustomButton
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-4 rounded-lg text-center "
+            >
+              <CommonText>View CV/Resume</CommonText>
+            </CustomButton>
+          </Link>
+          {/* <CustomDialog isOpen={isOpen} setOpen={setIsOpen}>
             <DialogContent />
-          </CustomDialog>
+          </CustomDialog> */}
         </div>
       </div>
     </div>
