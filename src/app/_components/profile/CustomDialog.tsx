@@ -31,14 +31,14 @@ export function CustomDialog({ isOpen, setOpen, children }: CustomDialogProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed top-0 left-0 w-screen h-screen bg-slate-950/90 p-8 overscroll-contain z-50 pb-0"
+          className="fixed top-0 left-0 w-screen h-screen bg-slate-950/90 pb-0 p-4 md:p-8 md:pb-0 overscroll-contain z-50 "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { delay: 0.3 } }}
           transition={{ ease: "easeInOut", duration: 0.1 }}
         >
           <motion.div
-            className="bg-slate-900 rounded-lg w-full h-full p-6 transition-all ease-in-out duration-300"
+            className="bg-slate-900 rounded-lg w-full h-full p-3 md:p-6 transition-all ease-in-out duration-300"
             initial={{ y: "100vh" }}
             animate={isOpen ? { y: 0 } : { y: "100vh" }}
             exit={{ y: "100vh" }}
@@ -49,7 +49,7 @@ export function CustomDialog({ isOpen, setOpen, children }: CustomDialogProps) {
               onClick={() => setOpen(!isOpen)}
               className="cursor-pointer hover:text-yellow-100 "
             />
-            <div className="w-full h-full">{children}</div>
+            <div className="w-full h-full overflow-scroll">{children}</div>
           </motion.div>
         </motion.div>
       )}

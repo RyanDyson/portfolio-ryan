@@ -28,7 +28,7 @@ export function ContactTitle() {
         {title.map((item, index) => {
           return (
             <div key={index} ref={ref}>
-              <DisplayText className="text-nowrap text-9xl text-blue-800">
+              <DisplayText className="text-nowrap text-6xl md:text-9xl text-blue-800">
                 {item}
               </DisplayText>
             </div>

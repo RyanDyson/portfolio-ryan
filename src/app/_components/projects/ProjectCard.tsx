@@ -21,7 +21,10 @@ export const ProjectCard = ({ item, index, isHovered }: Props) => {
   // isHovered && cardRef.current?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div ref={cardRef} className="w-max h-[500px] overflow-y-hidden">
+    <div
+      ref={cardRef}
+      className="w-max h-[100vh] md:h-[500px] overflow-y-hidden"
+    >
       <motion.div
         key={index}
         className=" flex flex-col w-[800px] transition-all duration-300 ease-in-out gap-y-8"
@@ -46,22 +49,22 @@ export const ProjectCard = ({ item, index, isHovered }: Props) => {
           alt={item.title}
           width={300}
           height={300}
-          className="h-1/2 object-cover rounded-lg w-full bg-zinc-950"
+          className="h-1/5 md:h-2/5 object-cover rounded-lg w-full bg-zinc-950"
           unoptimized
         />
         <motion.div
-          className="flex gap-x-2 px-8 justify-between"
+          className="flex flex-col md:flex-rowgap-x-2 px-8 md:justify-between justify-start gap-y-2"
           initial={{ opacity: 0 }}
           animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
           transition={{ ease: easeInOut, duration: 0.3 }}
         >
-          <div>
+          <div className="order-2 md:order-1">
             <CommonText className="text-lg font-bold">{item.stack}</CommonText>
             <CommonText className="text-sm">{item.description}</CommonText>
           </div>
-          <div className="flex flex-col md:flex-row gap-x-2 md:justify-between gap-y-2 w-max">
+          <div className="flex order-1 md:order-2 md:flex-flex-col md:flex-row gap-x-2 md:justify-between gap-y-2 w-max">
             <Link href={item.demo} className="w-full">
-              <CustomButton>
+              <CustomButton className="p-1 md:px-4 md:py-2">
                 <FaArrowUpRightFromSquare />
                 <CommonText>Demo</CommonText>
               </CustomButton>

@@ -6,6 +6,8 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { EnhancedText } from "./text/EnhancedText";
 import { useMediaQuery } from "react-responsive";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { CommonText } from "./text/CommonText";
+import { FaHome } from "react-icons/fa";
 
 type NavigationProps = {
   isHomeInView?: boolean;
@@ -20,7 +22,7 @@ export function Navigation({ isHomeInView }: NavigationProps) {
   const controls = useAnimation();
 
   const enhancedTextClassName = (index: number) => {
-    return `sm:text-sm text-center flex transition ease-in-out duration-300 ${
+    return `text-sm md:text-md m text-center flex transition ease-in-out duration-300 ${
       hoveredTextIndex !== null && hoveredTextIndex !== index
         ? "opacity-20"
         : "hover:text-amber-100"
@@ -40,7 +42,6 @@ export function Navigation({ isHomeInView }: NavigationProps) {
   useEffect(() => {
     controls.start({
       width: isHovered ? (isMd ? "60%" : "100%") : isMd ? "4rem" : "3rem",
-      height: isHovered ? "3rem" : isMd ? "1rem" : "3rem",
     });
   }, [isHovered, isMd, controls]);
 
@@ -56,23 +57,13 @@ export function Navigation({ isHomeInView }: NavigationProps) {
         >
           <motion.div className="flex justify-center items-center">
             <motion.div
-              className="flex justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-lg overflow-hidden w-12 md:w-16 h-12 md:h-4 transition-all rounded-full z-50"
+              className="flex justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-lg overflow-hidden w-12 md:w-16 h-12 md:h-10 transition-all rounded-full z-50"
               animate={controls}
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              {/* <div>
-                {isHovered === false ? (
-                  isMd === false ? (
-                    <BsThreeDotsVertical />
-                  ) : (
-                    <></>
-                  )
-                ) : (
-                  <></>
-                )}
-              </div> */}
+              {!isExpanded && <FaHome size={16} />}
               {isExpanded && (
                 <motion.div
                   className="flex flex-row gap-y-2 justify-around items-start md:items-center w-full px-4 md:px-8"

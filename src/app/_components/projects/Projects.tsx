@@ -11,6 +11,8 @@ import {
   motion,
   useInView,
   cubicBezier,
+  easeInOut,
+  easeIn,
 } from "framer-motion";
 import { TitleComponent } from "./TitleComponent";
 import { SubtitleComponent } from "./SubtitleComponent";
@@ -18,6 +20,7 @@ import { CustomButton } from "../CustomButton";
 import { CustomDialog } from "../profile/CustomDialog";
 import { archiveLists } from "../types/archiveList";
 import { ArchiveListItem } from "./ArchiveListItem";
+import { easeOut } from "framer-motion/dom";
 
 export function Projects() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -34,13 +37,11 @@ export function Projects() {
   const x = useTransform(scrollYProgress, [0, 1], ["5%", "-45%"]);
   const inView = useInView(headingTrigger);
 
-  const transform = cubicBezier(0.33, 0.01, 0, 0.97);
-
   const subtitle = "PERSONAL";
   const title = "PROJECTS";
 
   const archiveClassName = (index: number) => {
-    return `text-3xl transition-all duration-150 text-wrap-none pe-8 text-right ${
+    return `text-3xl transition-all duration-150 text-wrap-none pe-1 md:pe-8 text-right ${
       hoveredIndexArchive != null && hoveredIndexArchive !== index
         ? "text-blue-700/20"
         : "text-blue-200"
@@ -52,15 +53,15 @@ export function Projects() {
       <div
         id="projects"
         ref={projectRef}
-        className="bg-white w-screen h-[500vh] snap-normal snap-start"
+        className="bg-white w-screen h-[525vh] snap-normal snap-start"
       >
         <div className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20">
           <div className=" text-center w-full bg-gradient-to-b from-blue-800/100 to-blue-950/100 relative h-max flex flex-col">
             <motion.div
               className="w-[400vw] flex flex-row transition-all"
-              initial={{ transform: "translate(-200vw)" }}
+              initial={{ transform: "translate(100vw)" }}
               animate={inView && { transform: "translate(-300vw)" }}
-              transition={{ ease: transform, duration: 1 }}
+              transition={{ ease: easeIn, duration: 1 }}
             >
               {SubtitleComponent(subtitle)}
             </motion.div>
@@ -69,7 +70,7 @@ export function Projects() {
               className="w-[400vw] flex flex-row"
               initial={{ transform: "translate(-400vw)" }}
               animate={inView && { transform: "translate(0)" }}
-              transition={{ ease: transform, duration: 1 }}
+              transition={{ ease: easeIn, duration: 1 }}
             >
               {TitleComponent(title)}
             </motion.div>
@@ -114,7 +115,7 @@ export function Projects() {
         </div>
       </div>
       <CustomDialog isOpen={isDialogOpen} setOpen={setIsDialogOpen}>
-        <div className="flex flex-col gap-y-4 p-4 divide-y divide-yellow-50">
+        <div className="flex flex-col gap-y-4 p-4 divide-y divide-yellow-50 overflow-y-scroll">
           {archiveLists.map((item, index) => {
             return (
               <div

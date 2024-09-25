@@ -12,9 +12,9 @@ import { SiPrisma } from "react-icons/si";
 import { BiLogoPostgresql } from "react-icons/bi";
 import { SiTypescript } from "react-icons/si";
 import PFP from "@/../../public/ryan.jpg";
-import { CustomDialog } from "./CustomDialog";
 import { CustomButton } from "../CustomButton";
-import { Document, pdfjs, Page } from "react-pdf";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 // import type { PDFDocumentProxy } from "pdfjs-dist";
 // import useMeasure from "react-use-measure";
 import Link from "next/link";
@@ -77,6 +77,7 @@ const bioText =
 export function Profile() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   // const [ref, { width }] = useMeasure();
 
   // const [numPages, setNumPages] = useState<number>();
@@ -144,7 +145,7 @@ export function Profile() {
         <Image
           src={PFP}
           alt="Profile Picture"
-          className="rounded-md border-blue-950 border-4 h-auto w-full md:w-2/5 max-w-[500px] object-cover"
+          className="rounded-md border-blue-950 border-4 h-auto w-full md:w-2/5 max-w-[500px] object-cover mx-auto"
         />
         <div className="flex flex-col gap-y-2 justify-between">
           {/* <EnhancedText

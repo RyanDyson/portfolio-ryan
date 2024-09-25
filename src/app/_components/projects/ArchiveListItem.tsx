@@ -6,6 +6,7 @@ import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import useMeasure from "react-use-measure";
+import { useMediaQuery } from "react-responsive";
 
 type Props = {
   isHovered?: boolean;
@@ -19,10 +20,11 @@ const defaultClassName =
 
 export function ArchiveListItem(props: Props) {
   let [ref, { width }] = useMeasure();
+  const isMd = useMediaQuery({ query: "(min-width: 768px)" }) ?? true;
 
   return (
     <div className={defaultClassName}>
-      <div className="text-2xl flex gap-x-4 items-center justify-between w-full">
+      <div className="text-lg md:text-2xl flex gap-x-4 items-center justify-between w-full">
         <DisplayText className="text-blue-200 text-7xl text-center w-20">
           {props.id + 1}
         </DisplayText>
@@ -33,36 +35,43 @@ export function ArchiveListItem(props: Props) {
       </div>
 
       <motion.div
-        className="flex pe-3 items-center justify-between gap-x-2 transition-all ease-in-out duration-300 relative after:content-[''] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-2 after:bg-gradient-to-l after:from-slate-900 after:to-transparent"
-        initial={{ x: width + 32 }}
-        animate={props.isHovered ? { x: 0 } : { x: width + 32 }}
-        exit={{ x: "20vw" }}
+        className="flex flex-col md:flex-row pe-1.5 md:pe-3 items-end md:items-center md:justify-between gap-x-2 transition-all ease-in-out duration-300 relative after:content-[''] after:absolute after:top-0 after:right-0 after:bottom-0 after:w-2 after:bg-gradient-to-l after:from-slate-900 after:to-transparent gap-y-2"
+        initial={isMd ? { x: width + 32 } : { x: 0 }}
+        animate={
+          isMd ? (props.isHovered ? { x: 0 } : { x: width + 32 }) : { x: 0 }
+        }
         transition={{ ease: "easeInOut", duration: 0.3 }}
       >
         <DisplayText className={props.className}>
           {props.item.title}
         </DisplayText>
-        <div ref={ref} className="flex gap-x-2">
-          <Link
-            href={props.item.demo ?? ""}
-            className={props.item.demo === null ? "opacity-50" : "opacity-100"}
-          >
-            <CustomButton>
-              <>
-                <FaArrowUpRightFromSquare /> demo
-              </>
-            </CustomButton>
-          </Link>
-          <Link
-            href={props.item.demo ?? ""}
-            className={props.item.demo === null ? "opacity-50" : "opacity-100"}
-          >
-            <CustomButton>
-              <>
-                <FaGithub /> Repo
-              </>
-            </CustomButton>
-          </Link>
+        <div className={props.isHovered ? "opacity-100" : "opacity-50"}>
+          <div ref={ref} className="flex gap-x-2 gap-y-2 text-sm md:text-lg">
+            <Link
+              href={props.item.demo ?? ""}
+              className={
+                props.item.demo === null ? "opacity-50" : "opacity-100"
+              }
+            >
+              <CustomButton className="p-2 md:p-4">
+                <>
+                  <FaArrowUpRightFromSquare /> demo
+                </>
+              </CustomButton>
+            </Link>
+            <Link
+              href={props.item.github ?? ""}
+              className={
+                props.item.github === null ? "opacity-50" : "opacity-100"
+              }
+            >
+              <CustomButton className="p-2 md:p-4">
+                <>
+                  <FaGithub /> Repo
+                </>
+              </CustomButton>
+            </Link>
+          </div>
         </div>
       </motion.div>
     </div>

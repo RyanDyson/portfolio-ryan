@@ -9,7 +9,7 @@ import { fontVariant } from "../text/EnhancedText";
 export const Home = forwardRef<HTMLDivElement>((props, ref) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const enhancedTextClassName = (index: number) => {
-    return `word fancy text-center flex justify-between text-4xl sm:text-6xl md:text-7xl lg:text-8xl w-full transition ease-in-out duration-300 ${
+    return `word fancy text-center flex justify-between text-5xl sm:text-7xl md:text-7xl lg:text-8xl w-full transition ease-in-out duration-300 ${
       hoveredIndex !== null && hoveredIndex !== index
         ? "text-cadetblue opacity-20"
         : "hover:text-amber-100"

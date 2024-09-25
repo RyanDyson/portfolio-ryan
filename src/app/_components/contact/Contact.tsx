@@ -82,14 +82,14 @@ export function Contact() {
   return (
     <div
       id="contact"
-      className="w-screen h-screen p-12 bg-slate-200 overflow-hidden"
+      className="w-screen h-[200vh] md:h-screen py-12 px-3 md:p-12 bg-slate-200 overflow-hidden"
     >
       <CommonText className="text-lg text-blue-950 font-bold">
         Lets build something together
       </CommonText>
       <MemoizedTitle />
-      <div className="flex gap-x-12 pt-12 h-4/6">
-        <div className="w-3/4 text-blue-950 border-none h-full flex flex-col gap-y-4">
+      <div className="flex flex-col md:flex-row gap-x-12 pt-12 h-4/6 gap-y-4 ">
+        <div className="w-full md:w-3/4 text-blue-950 border-none h-full flex flex-col gap-y-4">
           Your Name
           <input className="text-blue-950 border-2 border-blue-200 rounded-md h-24 focus:border-blue-800 focus:bg-yellow-50 transition-all duration-200"></input>
           Your Email
@@ -98,7 +98,7 @@ export function Contact() {
           <input className="text-blue-950 border-2 border-blue-200 rounded-md h-full hover:border-blue-800 focus:bg-yellow-50 transition-all duration-200"></input>
         </div>
 
-        <div className="w-3/5 flex flex-col gap-y-4">
+        <div className="w-full md:w-3/5 flex flex-col gap-y-4 gap-x-4">
           <div className="flex flex-col gap-y-4 text-5xl text-blue-800">
             {contactInformation.information.map((item, index) => {
               return (
@@ -106,7 +106,7 @@ export function Contact() {
                   key={index}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
-                  className="font-bold text-3xl"
+                  className="font-bold text-2xl md:text-3xl"
                   href={item.url}
                 >
                   <EnhancedText
@@ -126,7 +126,10 @@ export function Contact() {
               <Socials {...item} key={index} />
             ))}
           </div>
-          <Link href="mailto:dysonryan6@gmail.com">
+          <Link
+            className="order-1 md:order-3"
+            href="mailto:dysonryan6@gmail.com"
+          >
             <CustomButton className="rounded-">
               <CommonText>SEND MESSAGE</CommonText>
             </CustomButton>
