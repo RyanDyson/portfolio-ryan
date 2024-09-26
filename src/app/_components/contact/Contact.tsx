@@ -82,7 +82,7 @@ export function Contact() {
   return (
     <div
       id="contact"
-      className="w-screen h-[200vh] md:h-screen py-12 px-3 md:p-12 bg-slate-200 overflow-hidden"
+      className="w-screen h-[200vh] md:h-screen py-12 px-3 md:p-12 bg-slate-200 overflow-hidden z-10"
     >
       <CommonText className="text-lg text-blue-950 font-bold">
         Lets build something together

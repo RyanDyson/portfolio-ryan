@@ -17,26 +17,19 @@ export default function Page() {
   const isHomeInView = useInView(homeRef);
   const [isHomeVisible, setIsHomeVisible] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingOpacity, setLoadingOpacity] = useState(1);
 
   useEffect(() => {
     setIsHomeVisible(!isHomeInView);
   }, [isHomeInView]);
 
   useEffect(() => {
-    // Start fading out after 1.5 seconds
-    const fadeOutTimer = setTimeout(() => {
-      setLoadingOpacity(0);
-    }, 1500);
-
     // Remove loading component after fade out (2 seconds total)
     const removeLoadingTimer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 4500);
 
     // Clean up the timers
     return () => {
-      clearTimeout(fadeOutTimer);
       clearTimeout(removeLoadingTimer);
     };
   }, []);
@@ -46,15 +39,16 @@ export default function Page() {
       {isLoading && (
         <AnimatePresence>
           <motion.div
-            className="transtion-all duration-300 ease-linear"
-            style={{ opacity: loadingOpacity }}
-            transition={{ ease: "linear", duration: 0.3 }}
+            className="fixed top-0 left-0 transtion-all duration-300 ease-linear z-50"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
+            transition={{ ease: "linear", duration: 0.5, delay: 4 }}
           >
-            <Loading />
+            <Loading isLoading={isLoading} />
           </motion.div>
         </AnimatePresence>
       )}
-      <main className="bg-blue-950 text-amber-50">
+      <main className="bg-blue-950 text-amber-50 z-10">
         <Navigation isHomeInView={!isHomeVisible} />
         <Home ref={homeRef} />
         <Profile />

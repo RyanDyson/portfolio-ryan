@@ -53,7 +53,7 @@ export function Projects() {
       <div
         id="projects"
         ref={projectRef}
-        className="bg-white w-screen h-[525vh] snap-normal snap-start"
+        className="bg-white w-screen h-[525vh] snap-normal snap-start z-10"
       >
         <div className="sticky top-0 w-full flex flex-col overflow-hidden bg-blue-800 pt-20">
           <div className=" text-center w-full bg-gradient-to-b from-blue-800/100 to-blue-950/100 relative h-max flex flex-col">

@@ -20,7 +20,7 @@ export const Home = forwardRef<HTMLDivElement>((props, ref) => {
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
       id="home"
-      className=" bg-circle"
+      className="bg-circle"
     >
       <div className="flex justify-center items-center min-h-screen w-full flex-col bg-gradient-to-t from-blue-800 to-transparent">
         <div className="flex flex-col justify-between w-max-[700px]">
