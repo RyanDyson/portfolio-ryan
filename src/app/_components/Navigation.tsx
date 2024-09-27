@@ -22,7 +22,7 @@ export function Navigation({ isHomeInView }: NavigationProps) {
   const controls = useAnimation();
 
   const enhancedTextClassName = (index: number) => {
-    return `text-sm md:text-md m text-center flex transition ease-in-out duration-300 ${
+    return `text-sm md:text-md text-center flex transition ease-in-out duration-300 ${
       hoveredTextIndex !== null && hoveredTextIndex !== index
         ? "opacity-20"
         : "hover:text-amber-100"
@@ -49,7 +49,7 @@ export function Navigation({ isHomeInView }: NavigationProps) {
     <AnimatePresence>
       {!isHomeInView && (
         <motion.div
-          className="block fixed bottom-0 md:top-0 left-0 w-screen p-4 md:h-0 z-50"
+          className="fixed bottom-0 md:top-0 left-0 w-screen p-4 md:h-0 z-50"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
@@ -57,7 +57,8 @@ export function Navigation({ isHomeInView }: NavigationProps) {
         >
           <motion.div className="flex justify-center items-center">
             <motion.div
-              className="flex justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-lg overflow-hidden w-12 md:w-16 h-12 md:h-10 transition-all rounded-full z-50"
+              className="flex justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-xl overflow-hidden w-12 md:w-16 h-12 md:h-10 transition-all rounded-full z-50"
+              style={{ backdropFilter: "blur(16px)" }}
               animate={controls}
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onMouseEnter={() => setIsHovered(true)}

@@ -11,22 +11,14 @@ import Image from "next/image";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { useEffect } from "react";
 
-const variants = {
-  visible: (custom: number) => ({
-    opacity: 1,
-    transform: "translateY(0vh)",
-    filter: "blur(20px)",
-    transition: { delay: custom * 0.2, duration: 1.5, ease: easeOut },
-  }),
-};
-
 type Props = {
+  exit: boolean;
   isLoading: boolean;
 };
 
-export function Loading(props: Props) {
+export function Loading({ isLoading, exit }: Props) {
   useEffect(() => {
-    if (props.isLoading) {
+    if (isLoading) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -36,6 +28,23 @@ export function Loading(props: Props) {
       document.body.style.overflowY = "auto";
     };
   });
+
+  const variants = {
+    visible: (custom: number) =>
+      !exit
+        ? {
+            opacity: 1,
+            transform: "translateY(0vh)",
+            filter: "blur(20px)",
+            transition: { delay: custom * 0.2, duration: 1.5, ease: easeOut },
+          }
+        : {
+            opacity: 0,
+            transform: "translateY(-100vh)",
+            filter: "blur(0)",
+            transition: { delay: custom * 0.2, duration: 1.5, ease: easeOut },
+          },
+  };
 
   return (
     <AuroraBackground className="bg-slate-950 text-yellow-50 fixed w-full h-full z-50 flex justify-center items-center">
@@ -96,7 +105,14 @@ export function Loading(props: Props) {
       <motion.div
         className="z-50 text-center flex flex-col gap-y-4"
         initial={{ opacity: 0, filter: "blur(16px)" }}
-        animate={{ opacity: 1, filter: "blur(0)" }}
+        animate={
+          !exit
+            ? { opacity: 1, filter: "blur(0)" }
+            : {
+                filter: "blur(16px)",
+                opacity: 0,
+              }
+        }
         transition={{ duration: 1.5, ease: easeOut }}
       >
         <CommonText className="text-6xl drop-shadow-xl">👋</CommonText>
