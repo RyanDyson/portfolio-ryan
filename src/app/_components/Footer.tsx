@@ -1,11 +1,36 @@
 import { CommonText } from "./text/CommonText";
+import { DisplayText } from "./text/DisplayText";
+import { navItems } from "./types/navItems";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <div className="w-screen py-6 px-4 md:px-16 bg-blue-700">
-      <CommonText className="text-sm text-right text-yellow-50 ">
-        © 2024 Ryan Dyson Darmawan
-      </CommonText>
+    <div className="flex fixed bottom-0 left-0 items-baseline h-[50vh] w-screen p-4 z-0">
+      <div className="flex relative justify-between w-full h-full items-end z-0">
+        <div className="flex items-baseline">
+          <DisplayText className="text-[13rem] leading-none text-left text-yellow-50 ">
+            RYAN
+          </DisplayText>
+          <CommonText className="text-md text-yellow-50">.DEV</CommonText>
+        </div>
+        <div className="flex flex-col gap-y-2 text-right justify-center">
+          {navItems.map((item, index) => {
+            return (
+              <Link key={index} href={item.href}>
+                <CommonText
+                  key={index}
+                  className="text-md text-yellow-50 hover:text-yellow-200 active:text-blue-950 transition-colors duration-100"
+                >
+                  {item.label}
+                </CommonText>
+              </Link>
+            );
+          })}
+          <CommonText className="text-sm font-light text-slate-300">
+            ©2024 all rights reserved
+          </CommonText>
+        </div>
+      </div>
     </div>
   );
 }

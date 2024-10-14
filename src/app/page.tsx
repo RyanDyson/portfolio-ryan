@@ -56,13 +56,16 @@ export default function Page() {
         </AnimatePresence>
       )}
       <main className="bg-slate-950 text-amber-50">
-        <Navigation isHomeInView={!isHomeVisible} />
-        <Home ref={homeRef} />
-        <Profile />
-        <Projects />
-        <Contact />
-        <Blog />
-        <Footer />
+        <div className="relative z-10">
+          <Navigation isHomeInView={!isHomeVisible} />
+          <Home ref={homeRef} />
+          <Profile />
+          <Projects />
+          <Contact />
+        </div>
+        <div className="z-0 h-[50vh]">
+          <Footer />
+        </div>
       </main>
     </>
   );

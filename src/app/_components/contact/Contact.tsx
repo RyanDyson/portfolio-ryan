@@ -1,17 +1,14 @@
 "use client";
 
 import { FaGithub, FaLinkedin, FaInstagram, FaPhone } from "react-icons/fa";
-import { DisplayText } from "../text/DisplayText";
 import { CommonText } from "../text/CommonText";
-import { animate, motion, useMotionValue } from "framer-motion";
 import { CustomButton } from "../CustomButton";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import useMeasure from "react-use-measure";
+import React, { useRef, useState } from "react";
 import { MdEmail, MdLocationPin } from "react-icons/md";
 import { EnhancedText, fontVariant } from "../text/EnhancedText";
 import { ContactTitle } from "./ContactTitle";
-import React from "react";
+import emailjs from "@emailjs/browser";
 
 const contactInformation = {
   information: [
@@ -70,6 +67,7 @@ const MemoizedTitle = React.memo(() => {
 MemoizedTitle.displayName = "MemoizedTitle";
 
 export function Contact() {
+  const formRef = useRef();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const enhancedTextClassName = (index: number) => {
     return `word fancy text-center flex justify-between transition ease-in-out duration-300 ${
