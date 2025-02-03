@@ -184,12 +184,12 @@ export function Profile() {
       >
         <motion.div
           variants={child}
-          className="rounded-md h-auto border-2 border-yellow-100 md:w-3/5 max-w-[500px] mx-auto"
+          className="h-auto border-2 border-yellow-100 md:w-3/5 max-w-[500px] mx-auto rounded-full"
         >
           <Image
             src={PFP}
             alt="Profile Picture"
-            className="w-full h-full object-cover rounded-md"
+            className="w-full h-full object-cover rounded-full"
           />
         </motion.div>
         <div className="flex flex-col gap-y-2 justify-between">

@@ -34,7 +34,7 @@ export function Projects() {
     target: projectRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-45%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["5%", "-65%"]);
   const inView = useInView(headingTrigger);
 
   const subtitle = "PERSONAL";

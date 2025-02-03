@@ -1,20 +1,45 @@
 import discard from "@/../public/projects/discard.png";
 import hkiu from "@/../public/projects/hkiu.png";
 import acme from "@/../public/projects/acme.png";
-import hkscapes from "@/../public/projects/hkscapes.png";
+import idx from "@/../public/projects/idx.png";
+import cpu from "@/../public/projects/cpu.png";
 
 export const projectItems = [
   {
+    title: "IDXTerminal",
+    subtitle: "Full-Stack Web Development",
+    imageUrl: idx,
+    inProgress: true,
+    description:
+      "An open source alternative to bloomberg terminal made for Indonesian stock exchange.",
+    stack: "Built with NextJS, React, Prisma, TRPC, ShadCN UI, and TailwindCSS",
+    demo: "https://idx-terminal.vercel.app/en",
+    github: "https://github.com/RyanDyson/IDXTerminal",
+  },
+  {
+    title: "CPU",
+    subtitle: "Computer Architecture",
+    imageUrl: cpu,
+    description:
+      "A bespoke 16-bit CPU design able to run a custom instruction set that covers basic instructions from MIPS ASM",
+    stack: "Built with Logisim-Evolution",
+    github: "https://github.com/vinmeil/discard",
+    download:
+      "https://github.com/RyanDyson/CPU-architecture-implementation/archive/refs/heads/main.zip",
+  },
+  {
     title: "Discard",
+    subtitle: "UI/UX Design",
     imageUrl: discard,
     description:
-      "A chatting application with built in support for voice chat and end to end encryption. This project was a collaboration with a couple of friends. Contributed on UI design with figma aswell with landing page and back-end development",
-    stack: "Built with NextJS, TypeScript, React, and TailwindCSS",
-    demo: "https://discard-rust.vercel.app/",
-    github: "https://github.com/vinmeil/discard",
+      "A discord clone design created and concepted with a full design system with Figma",
+    stack: "Designed with Figma",
+    figma:
+      "https://www.figma.com/design/7BlH5j8elYsH9V4P5RBbq2/App?node-id=56-6&t=jzQzu6YKWDZTluSU-1",
   },
   {
     title: "Acme",
+    subtitle: "Full-Stack Web Development",
     imageUrl: acme,
     description:
       "A simple business financial tracker with support to input invoices and receipts from customer. A fully functional auth and dashboard is also supported",
@@ -23,15 +48,8 @@ export const projectItems = [
     github: "https://github.com/RyanDyson/next-js-Acme",
   },
   {
-    title: "HKScapes",
-    imageUrl: hkscapes,
-    description: "A landing page for a touring company based in HongKong",
-    stack: "Built with BootStrap and SASS",
-    demo: "https://hk-scapes-bootstrap-v5-sass.vercel.app/",
-    github: "https://github.com/RyanDyson/HKscapes",
-  },
-  {
     title: "HKIU",
+    subtitle: "Front-end Web Development",
     imageUrl: hkiu,
     description:
       "A mock university website with functional major preference choice and visitor booking system. This project was used to learn the basics of webdev with only frontend functionality being available",

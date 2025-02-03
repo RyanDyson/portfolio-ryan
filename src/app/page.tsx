@@ -10,7 +10,6 @@ import { useRef, useState, useEffect } from "react";
 import { Loading } from "./_components/loading/Loading";
 import { motion, AnimatePresence } from "framer-motion";
 import { Footer } from "./_components/Footer";
-import { Blog } from "./_components/blog/Blog";
 
 export default function Page() {
   const homeRef = useRef<HTMLDivElement>(null);
@@ -63,7 +62,7 @@ export default function Page() {
           <Projects />
           <Contact />
         </div>
-        <div className="z-0 h-[50vh]">
+        <div className="z-0 h-[50vh] bg-blue-950">
           <Footer />
         </div>
       </main>
