@@ -57,7 +57,7 @@ export function Navigation({ isHomeInView }: NavigationProps) {
         >
           <motion.div className="relative flex justify-center items-center backdrop-blur-xl z-50 opacity-100">
             <motion.div
-              className="flex relative justify-around items-center bg-slate-900/50 border border-slate-400/60 text-amber-50 backdrop-blur-xl overflow-hidden w-12 md:w-16 h-12 md:h-10 transition-all rounded-full"
+              className="flex relative justify-around items-center bg-slate-900/90 border border-slate-400/60 text-amber-50 backdrop-blur-xl overflow-hidden w-12 md:w-16 h-12 md:h-10 transition-all rounded-full"
               animate={controls}
               transition={{ duration: 0.2, ease: "easeInOut" }}
               onMouseEnter={() => setIsHovered(true)}
