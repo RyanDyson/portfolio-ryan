@@ -3,8 +3,20 @@ import hkiu from "@/../public/projects/hkiu.png";
 import acme from "@/../public/projects/acme.png";
 import idx from "@/../public/projects/idx.png";
 import cpu from "@/../public/projects/cpu.png";
+import goceries from "@/../public/projects/goceries.png";
 
 export const projectItems = [
+  {
+    title: "GOceries",
+    subtitle: "Full-Stack App Development",
+    imageUrl: goceries,
+    inProgress: true,
+    description:
+      "A groceries delivery app that connects local groceries store to customers. In collaboration with a few friends, repository is private",
+    stack: "Built with Kotlin, Protoyped with Figma",
+    figma:
+      "https://www.figma.com/proto/dCAjks3xouRE69Dq4gTQyh/GOceries?page-id=5%3A234&node-id=30-385&p=f&viewport=1267%2C-1865%2C1.02&t=Q09e5djSbOdIRIhr-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=30%3A385&show-proto-sidebar=1",
+  },
   {
     title: "IDXTerminal",
     subtitle: "Full-Stack Web Development",

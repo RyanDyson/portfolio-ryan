@@ -8,6 +8,7 @@ import { FaArrowUpRightFromSquare, FaFigma } from "react-icons/fa6";
 import { FaGithub, FaDownload } from "react-icons/fa";
 import Link from "next/link";
 import { CustomButton } from "../CustomButton";
+import { cn } from "@/lib/utils";
 
 type Props = {
   item: (typeof projectItems)[number];
@@ -52,9 +53,12 @@ export const ProjectCard = ({ item, index, isHovered }: Props) => {
         <Image
           src={item.imageUrl}
           alt={item.title}
-          width={300}
-          height={300}
-          className="h-1/5 md:h-2/5 object-cover rounded-lg w-full bg-zinc-950"
+          width={800}
+          height={500}
+          className={cn(
+            "h-50vh max-h-[150px] object-cover rounded-lg w-full bg-zinc-950 transition-all duration-300 ease-in-out",
+            isHovered && "max-h-[300px]"
+          )}
           unoptimized
         />
         <motion.div
