@@ -79,7 +79,7 @@ export function Projects() {
 
           <div
             id="experience"
-            className="flex flex-col bg-blue-950 justify-center w-[300vw] h-full"
+            className="flex flex-col bg-blue-950 justify-center w-[350vw] h-full"
             ref={headingTrigger}
           >
             <motion.div
